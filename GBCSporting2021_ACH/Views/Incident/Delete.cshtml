@@ -1,0 +1,14 @@
+﻿@model Incident
+@{
+    ViewBag.Title = "Delete Incident";
+}
+
+<h2>@ViewBag.Title</h2>
+<p>Do you really want to delete <span class="font-weight-bold">@Model.Title</span>?</p>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="IncidentID" />
+
+    <button type="submit" class="btn btn-primary">Yes</button>
+    <a asp-action="List" class="btn btn-primary">No</a>
+</form>

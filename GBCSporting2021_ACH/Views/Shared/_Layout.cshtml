@@ -1,0 +1,59 @@
+﻿@{
+    string controller =
+        ViewContext.RouteData.Values["controller"].ToString();
+    string action =
+        ViewContext.RouteData.Values["action"].ToString();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title - SportsPro</title>
+    <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">SportsPro</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <nav class="navbar-collapse collapse d-sm-inline-flex">
+                    <div class="navbar-nav mr-auto">
+                        <a class="nav-link @(controller == "Home" && action == "Index" ? "active" : "")" asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="nav-link @(controller == "Product" ? "active" : "")" asp-controller="Product" asp-action="List">Products</a>
+                        <a class="nav-link @(controller == "Technician" ? "active" : "")" asp-controller="Technician" asp-action="List">Technicians</a>
+                        <a class="nav-link @(controller == "Customer" ? "active" : "")" asp-controller="Customer" asp-action="List">Customers</a>
+                        <a class="nav-link @(controller == "Incident" ? "active" : "")" asp-controller="Incident" asp-action="List">Incidents</a>
+                        <a class="nav-link @(controller == "Registration" ? "active" : "")" asp-controller="Registration" asp-action="GetCustomer">Registrations</a>
+                    </div>
+                    <div class="navbar-nav navbar-right">
+                        <a class="nav-link @(controller == "Home" && action == "About" ? "active" : "")" asp-controller="Home" asp-action="About">About</a>
+                    </div>
+                </nav>
+            </div>
+        </nav>
+    </header>
+    <div class="container text-center">
+        @if (TempData["message"] != null)
+        {
+            <h4 class="bg-info p-2 text-white rounded">@TempData["message"]</h4>
+        }
+    </div>
+    <div class="container">
+        <main role="main" class="pb-3 mt-2 mb-5">
+            @RenderBody()
+        </main>
+    </div>
+    <footer class="border-top footer">
+        <div class="container">
+            <span class="text-muted">&copy; 2021 Copyright: GBC Sporting</span>
+        </div>
+    </footer>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

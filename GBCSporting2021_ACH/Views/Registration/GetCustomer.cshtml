@@ -1,0 +1,21 @@
+﻿@model RegistrationViewModel
+@{
+    ViewBag.Title = "Registrations";
+}
+@section scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<h4>Get Customer</h4>
+<form asp-action="GetCustomer" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <select asp-for="CustomerID"
+                asp-items="@(new SelectList(Model.Customers, "CustomerID", "FullName"))" class="form-control">
+            <option selected value="">Select a customer...</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Select</button>
+</form>
